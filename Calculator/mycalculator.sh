@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "This is my Calculator"
+echo -e "\033[36;40mThis is my Calculator\033[0m"
 
 echo "Enter your first number: "
 read NUM1
