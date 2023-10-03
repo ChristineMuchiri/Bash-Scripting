@@ -19,9 +19,12 @@ clear
 case $input in
 	1) echo -e $color"Sign Up Screen"$none
 		echo
-		while true
-		do
-		sign_up=()
+		username_file="registered_username.txt"
+		declare -a sign_up=()
+		if [[ -f "$username_file" ]]
+		then
+			readarray -t sign_up < "$username_file"
+		fi
 		read -p "Please chose your username: " username
 		
 			if [[ "${sign_up[@]}" =~ "$username" ]]
@@ -30,6 +33,7 @@ case $input in
 				read -p "Please chose your username: " username
 			else
 				sign_up+=($username)
+				echo "${sign_up[@]}" >> "$username_file"
 			fi
 
 				read -s -p "Please enter your password: " password
@@ -45,8 +49,7 @@ case $input in
 					else
 						echo "Password do not match"
 					fi
-		break
-	done;;
+		;;
 	2) echo "Sign up";;
 	3) exit 1
 esac
