@@ -45,12 +45,54 @@ case $input in
 					then
 						echo "Registration Successful.Please hit any key to continue"
 						read any_key
-						clear
 					else
 						echo "Password do not match"
 					fi
 		;;
-	2) echo "Sign up";;
+	2) echo -e $color"Sign in Screen"$none
+		echo "Please enter your"
+		read -p "Username: " username
+		read -s -p "Password: " password
+		echo
+		clear
+		echo "1) Take a Test"
+		echo "2) View your Test"
+		echo "3) Exit"
+		echo "Please choose your option: "
+		read option
+
+		case $option in
+			1)
+				echo "Time Remaining: seconds"
+				echo
+				echo "1. Which one of these is a fruit?"
+				echo "[a] apple"
+				echo "[b] onion"
+				echo "[c] tomato"
+				echo "[d] cabbage"
+				echo
+				read -p "Choose your option: " ans1
+				clear
+				echo "2. Which one of these is a vehicle?"
+				echo "[a] car"
+				echo "[b] table"
+				echo "[c] cot"
+				echo "[d] sky"
+				echo
+				read -p "Chose your option: " ans2
+				clear
+				echo "3.Which one of these is a vegitable?"
+				echo "[a] orange"
+				echo "[b] banaba"
+				echo "[c] beans"
+				echo "[d] mango"
+				echo
+				read -p "Chose your option: " ans3
+				echo
+				echo "Test Completed will be logged off shortly"
+				sleep 3
+				clear;;
+		esac
+		;;
 	3) exit 1
 esac
-
