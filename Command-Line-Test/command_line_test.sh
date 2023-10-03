@@ -15,30 +15,38 @@ echo
 echo "Please choose your option: "
 read input
 
+clear
 case $input in
 	1) echo -e $color"Sign Up Screen"$none
 		echo
+		while true
+		do
+		sign_up=()
 		read -p "Please chose your username: " username
-		echo "$username" >> signup.txt
 		
-		if grep "$username" signup.txt
-		then
-			echo "Username $username exists: Please choose some other name."
-			read -p "Please chose your username: " username
-		fi
+			if [[ "${sign_up[@]}" =~ "$username" ]]
+			then
+				echo "Username $username exists: Please choose some other name."
+				read -p "Please chose your username: " username
+			else
+				sign_up+=($username)
+			fi
 
-		read -s -p "Please enter your password: " password
-		echo
-		read -s -p "Please re enter your password: " password1
-		echo
-		if [ $password == $password1 ]
-		then
-			echo "Registration Successful.Please hit any key to continue"
-		else
-			echo "Password do not match"
-		fi
-	
-		echo "2)View test";;
+				read -s -p "Please enter your password: " password
+				echo
+				read -s -p "Please re enter your password: " password1
+				echo
+
+					if [ $password == $password1 ]
+					then
+						echo "Registration Successful.Please hit any key to continue"
+						read any_key
+						clear
+					else
+						echo "Password do not match"
+					fi
+		break
+	done;;
 	2) echo "Sign up";;
 	3) exit 1
 esac
