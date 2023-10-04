@@ -4,26 +4,7 @@ read number
 
 for i in $number
 	do
-		echo -n $i 
-		((i++)) 
-		echo $i
-	for i in $number
-	do
-		echo -n $i
-		((i++))
-		echo -n $i
-		((i++))
-		echo $i
-	for i in $number
-	do
-		echo -n $i
-		((i++))
-		echo -n $i
-		((i++))
-		echo -n $i
-		((i++))
-		echo $i
+		echo "$i $((i +1))"
+		echo "$i $((i +1)) $((i +2))"
+		echo "$i $((i +1)) $((i +2)) $((i +3))"
 	done
-	done
-done
-
