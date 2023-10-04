@@ -3,53 +3,43 @@
 color="\033[36;40m"
 none="\033[0m"
 
-echo -e $color"Welcome to our online testing platform"$none
+echo -e $color"Command Line Test"$none
 echo -e $color"Please choose the below options:"
 echo
-echo -e $color"1) Sign up"$none 
-echo -e $color"2)Sign In"$none
+echo -e $color"1) Sign In"$none 
+echo -e $color"2)Sign Up"$none
 echo -e $color"3) EXIT"$none
 echo
-echo "Note:Script Exit Timeout is set"
+echo "Note: Script Exit Timeout is set"
 echo
-echo "Please choose your option: "
-read input
-
+read -p "Please choose your option: " input
 clear
+
 case $input in
-	1) echo -e $color"Sign Up Screen"$none
+	2)
+		echo "My command Line Test"
+		echo -e $color"Sign Up Screen"$none
 		echo
-		username_file="registered_username.txt"
+		username_file="user_credentials.csv"
 		declare -a sign_up=()
-		if [[ -f "$username_file" ]]
-		then
-			readarray -t sign_up < "$username_file"
-		fi
-		read -p "Please chose your username: " username
 		
-			if [[ "${sign_up[@]}" =~ "$username" ]]
-			then
-				echo "Username $username exists: Please choose some other name."
-				read -p "Please chose your username: " username
-			else
-				sign_up+=($username)
-				echo "${sign_up[@]}" >> "$username_file"
-			fi
+		read -p "Please chose your username: " username
+		read -s -p "Please enter your password: " password
+		echo
+		read -s -p "Please re enter your password: " password1
+		echo
 
-				read -s -p "Please enter your password: " password
-				echo
-				read -s -p "Please re enter your password: " password1
-				echo
-
-					if [ $password == $password1 ]
-					then
-						echo "Registration Successful.Please hit any key to continue"
-						read any_key
-					else
-						echo "Password do not match"
-					fi
+		grep "$username" user_credentials.csv >/dev/null
+		if [[ $password == $password1 && $? == 0  ]]
+		then
+			echo "Username "$username" Exists!!: Please choose some other name"
+		else
+			read -n 1 -s -r -p "Registration successful. Please hit any key to continue"
+			sign_up+="$username, $password"
+			echo "${sign_up[@]}" >> "user_credentials.csv"
+		fi
 		;;
-	2) echo -e $color"Sign in Screen"$none
+	1) echo -e $color"Sign in Screen"$none
 		echo "Please enter your"
 		read -p "Username: " username
 		read -s -p "Password: " password
@@ -92,7 +82,27 @@ case $input in
 				echo "Test Completed will be logged off shortly"
 				sleep 3
 				clear;;
+			2)
+				echo "My Command Line Test"
+				echo
+				echo "Viewing your previous test history"
+				read -p "More: Hit any key to continue or X to exit:" key
+				if [[ "$key" =~ "X" ]]
+				then
+					exit 1
+				else
+					echo "Continue"
+				fi
+				;;
+			3)
+				exit 1
+				;;
+			*)
+				echo "Invalid option: Try Again!!"
 		esac
 		;;
 	3) exit 1
+		;;
+	*)
+		echo "Invalid option : Try Again"
 esac
