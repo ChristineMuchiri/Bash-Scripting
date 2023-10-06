@@ -1,7 +1,7 @@
 #!/bin/bash
 
 args=("$@")
-operator="${arg[${#arg[@]}-1]}"
+operator="${args[${#args[@]}-1]}"
 
 case $operator in
 	+)
