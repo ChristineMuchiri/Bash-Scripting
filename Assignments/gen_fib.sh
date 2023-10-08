@@ -1,23 +1,17 @@
 #!/bin/bash
 
-limit=$1
-function fibonacci {
-	n=8
+
+
 	a=0
 	b=1
 
-	for (( i=0; i<n; i++))
+	while [ "$a" -le "$1" ]
 	do
-		echo -n "$a"
-		if [ "$a" >= 10 ]
-		then
-			exit 1
-		else
-			c=$((a + b))
-			a=$b
-			b=$c
-		fi
+		echo -n " $a,"
+		c=$((a + b))
+		a=$b
+		b=$c
+	
 		
 	done
-}
-fibonacci
+ 
