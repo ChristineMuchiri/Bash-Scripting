@@ -2,7 +2,7 @@
 
 arg=("$@")
 array=${arg[@]}
-
+len=${#arg[@]}
 for arg in "${arg[@]}"
 do
 	length=${#arg}
