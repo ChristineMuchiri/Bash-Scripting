@@ -1,42 +1,55 @@
 #!/bin/bash
 
-arg="$@"
-array="${arg[@]}"
+arr=("$@")
+length=${#arr[@]}
 
 echo "1. Ascending"
 echo "2. Descending"
-echo $array
 read -p "Please select an option: " option
-
-function bubble_sort {
-	local arr=("$@")
-	local length="${#arr[@]}"
-	local swapped
-
-	while true
-	do
-		swapped=false
-		for ((i=1; i<length; i++))
-		do
-			if ((arr[i-1] > arr[i]));
-			then
-				temp="${arr[i-1]}"
-				arr[i-1]="{arr[i]}"
-				arr[i]="$temp"
-				swapped=true
-			fi
-		done
-		if ! "$swapped"
-		then
-			break
-		fi
-	done
-	echo "${arr[@]}"
-}
 
 case $option in
 	1)
-		sorted_numbers=($(bubble_sort "${array[@]}"))
-		echo "Sorted array is ${sorted_numbers[@]}"
+		for ((i=0; i<$length-1; i++))
+		do
+			swapped=false
+			for ((j=0; j<$length-$i-1; j++))
+			do
+				if [[ ${arr[$j]} -gt ${arr[$j+1]} ]]
+				then
+					temp=${arr[$j]}
+					arr[$j]=${arr[$j+1]}
+					arr[$j+1]=$temp
+					swapped=true
+				fi
+			done
+
+			if [ "$swapped" = false ]
+			then
+				break
+			fi
+		done
+		echo "${arr[@]}"
+		;;
+	2)
+		for ((i=0; i<$length-1; i++))
+		do
+			swapped=false
+			for ((j=0; j<$length-$i-1; j++))
+			do
+				if [[ ${arr[$j]} -le ${arr[$j+1]} ]]
+				then
+					temp=${arr[$j]}
+					arr[$j]=${arr[$j+1]}
+					arr[$j+1]=$temp
+					swapped=true
+				fi
+			done
+			
+			if [ "$swapped" = false ]
+			then
+				break
+			fi
+		done
+		echo "${arr[@]}"
 		
 esac
