@@ -1,6 +1,6 @@
 #!/bin/bash
 
-arr=(2 56 98 3 5 6 100 23)
+arr=("$@")
 length=${#arr[@]}
 
 	for ((i=0; i< $length-1; i++))
@@ -23,6 +23,6 @@ length=${#arr[@]}
 			break
 		fi
 	done
+echo "${arr[@]}"
 
 
-echo "sorted array: ${arr[@]}"
