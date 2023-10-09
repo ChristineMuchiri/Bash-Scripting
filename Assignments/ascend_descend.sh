@@ -36,7 +36,7 @@ function bubble_sort {
 
 case $option in
 	1)
-		sorted_numbers=($(bubble_sort "${arr[@]}"))
+		sorted_numbers=($(bubble_sort "${array[@]}"))
 		echo "Sorted array is ${sorted_numbers[@]}"
 		
 esac
