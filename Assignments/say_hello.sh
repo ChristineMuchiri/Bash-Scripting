@@ -1,18 +1,18 @@
 #!/bin/bash
 
-time=$(date +%H)
 get_greeting() {
+	time=$(date +%H)
 	
-	if [ "$time" -ge 5 ] && [ "$time" -le 12 ]
+	if (( time >= 5  &&  time < 12 ))
 	then
 		echo "Good Morning user, Have a nice day!"
-	elif [ "$time" -ge 12 ] && [ "$time" -le 1 ]
+	elif (( time >= 12  &&  time < 13 ))
 	then
 		echo "Good noon user"
-	elif [ "$time" -ge 2 ] && [ "$time" -le 5 ]
+	elif  (( time >= 13  && time < 17 ))
 	then
 		echo "Good afternoon user"
-	elif [ "$time" -ge 5 ] && [ "$time" -le 9 ]
+	elif (( time >= 17  && time < 21 ))
 	then
 		echo "Good evening user"
 	else
