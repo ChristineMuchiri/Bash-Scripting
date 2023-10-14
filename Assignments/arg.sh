@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "$0"
+mkdir -p $1/$2
