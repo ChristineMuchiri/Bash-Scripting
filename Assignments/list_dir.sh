@@ -2,7 +2,7 @@
 
 directories="$@"
 
-if [ $? == 0 ]
+if [[ $# == 0 ]]
 then
 	for item in *
 	do
