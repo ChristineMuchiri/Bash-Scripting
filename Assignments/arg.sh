@@ -1,3 +1,6 @@
 #!/bin/bash
 
-wc -l -w $1 | cut -b 3,4,5,6,7,8 
+lines=$(wc -l $1 | cut -d ' ' -f 1)
+words=$(wc -w $1 | cut -d ' ' -f 1)
+echo "$lines"
+echo "$words"
